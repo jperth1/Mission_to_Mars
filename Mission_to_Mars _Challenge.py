@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[62]:
-
-
 # Import Splinter and BeautifulSoup
 from splinter import Browser
 from bs4 import BeautifulSoup as soup
@@ -11,14 +5,9 @@ from webdriver_manager.chrome import ChromeDriverManager
 import pandas as pd
 
 
-# In[63]:
-
-
 executable_path = {'executable_path': ChromeDriverManager().install()}
 browser = Browser('chrome', **executable_path, headless=False)
 
-
-# In[3]:
 
 
 # Visit the mars nasa news site
@@ -28,15 +17,10 @@ browser.visit(url)
 browser.is_element_present_by_css('div.list_text', wait_time=1)
 
 
-# In[4]:
-
-
 html = browser.html
 news_soup = soup(html, 'html.parser')
 slide_elem = news_soup.select_one('div.list_text')
 
-
-# In[5]:
 
 
 # Scrape the title of the most recent article
@@ -258,17 +242,11 @@ df.to_html()
 
 # ### Hemispheres
 
-# In[64]:
-
 
 # 1. Use browser to visit the URL 
 url = 'https://marshemispheres.com/'
 
 browser.visit(url)
-
-
-# In[67]:
-
 
 # 2. Create a list to hold the images and titles.
 hemisphere_image_urls = []
@@ -288,15 +266,9 @@ for i in range(0,4):
     browser.back()
 
 
-# In[68]:
-
 
 # 4. Print the list that holds the dictionary of each image url and title.
 hemisphere_image_urls
-
-
-# In[56]:
-
 
 # 5. Quit the browser
 browser.quit()
